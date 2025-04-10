@@ -26,7 +26,7 @@ We'll need to combine each team's records into one dataframe. Before we do that,
 
 ```{r read and process}
 # each team's file is labeled with the team abbreviation. So here, we're reading the Chicago Cubs.
-w_perc <- read_csv("../db/mlb/chc.txt")
+w_perc <- read_csv("../../db/mlb/chc.txt")
 # renaming the columns that will be kept in the dataframe
 w_perc <- rename(w_perc, year = Year, perc = 'W-L%', team=Tm)
 # selecting only the renamed columns for the dataframe
@@ -44,7 +44,7 @@ Now that we have the commands to read and process the data into the desired form
 ```{r process function}
 # the argument for read_csv() must be a string format (" "), so we have to enter the function argument, team, as a string
 perc_win <- function(team = "str"){
-  txtfile <- paste0("../db/mlb/", team,".txt")
+  txtfile <- paste0("../../db/mlb/", team,".txt")
   sheet <- read_csv(txtfile)
   sheet <- sheet %>%
     rename(year = Year, perc = 'W-L%', team=Tm) %>%

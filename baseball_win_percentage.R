@@ -1,17 +1,17 @@
 library(readr)
 library(tidyverse)
-w_perc <- read_csv("../db/mlb/cle.txt")
+w_perc <- read_csv("../../db/mlb/cle.txt")
 str(w_perc)
 w_perc <- rename(w_perc, year = Year, perc = 'W-L%', team=Tm)
 #w_perc <- select(w_perc, year, perc)
 w_perc <- filter(w_perc, year >= 1925, year < 2025)
 
-cat("../db/mlb/",get[ana],".txt")
+cat("../../db/mlb/",get[ana],".txt")
 city <- "ana"
-paste0("../db/mlb/",city,'.txt')
+paste0("../../db/mlb/",city,'.txt')
 
 perc_win <- function(team = "str"){
-  txtfile <- paste0("../db/mlb/", team,".txt")
+  txtfile <- paste0("../../db/mlb/", team,".txt")
   sheet <- read_csv(txtfile)
   sheet <- sheet %>%
     rename(year = Year, perc = 'W-L%', team=Tm) %>%
@@ -21,6 +21,7 @@ perc_win <- function(team = "str"){
 }
 
 cleveland <- perc_win("cle")
+head(cleveland)
 
 teams <- list("ana", "ari", "atl", "bal", "bos", "chc", "chw", "cin", "cle", "col", "det", "hou", "kcr", "lad", "mia", "mil", "min", "nym", "nyy", "oak", "phi", "pit", "sdp", "sea", "sfg", "stl", "tbd", "tex", "tor", "wsn")
 length(teams)
@@ -42,3 +43,10 @@ max(win_perc$perc)
 
 filter(win_perc, perc == 0.721)
 filter(win_perc, perc == 0.248)
+
+
+rmarkdown::render("project_2.Rmd", 
+                  output_file = "README.md", 
+                  output_format = "github_document",
+                  output_options = list(toc=TRUE, toc_depth=1,
+                                        number_sections=TRUE, df_print="default"))

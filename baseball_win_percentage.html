@@ -379,7 +379,7 @@ we do that, let’s set up some simple data read and processing commands
 to ensure we’re extracting the information we want from the team
 files</p>
 <pre class="r"><code># each team&#39;s file is labeled with the team abbreviation. So here, we&#39;re reading the Chicago Cubs.
-w_perc &lt;- read_csv(&quot;../db/mlb/chc.txt&quot;)
+w_perc &lt;- read_csv(&quot;../../db/mlb/chc.txt&quot;)
 # renaming the columns that will be kept in the dataframe
 w_perc &lt;- rename(w_perc, year = Year, perc = &#39;W-L%&#39;, team=Tm)
 # selecting only the renamed columns for the dataframe
@@ -405,7 +405,7 @@ desired format, we simplify all these separate commands into one
 function:</p>
 <pre class="r"><code># the argument for read_csv() must be a string format (&quot; &quot;), so we have to enter the function argument, team, as a string
 perc_win &lt;- function(team = &quot;str&quot;){
-  txtfile &lt;- paste0(&quot;../db/mlb/&quot;, team,&quot;.txt&quot;)
+  txtfile &lt;- paste0(&quot;../../db/mlb/&quot;, team,&quot;.txt&quot;)
   sheet &lt;- read_csv(txtfile)
   sheet &lt;- sheet %&gt;%
     rename(year = Year, perc = &#39;W-L%&#39;, team=Tm) %&gt;%
